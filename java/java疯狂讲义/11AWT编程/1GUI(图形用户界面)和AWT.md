@@ -1,0 +1,9 @@
+﻿# 1GUI(图形用户界面)和AWT
+AWT是抽象窗口工具集,是窗口框架,它从不同平台的窗口系统中抽取共同组件,AWT程序仅指定了界面组件的位置和行为,当程序运行时,JVM调用操作系统本地的图形界面来创建和平台一致的对等体.
+
+所有和AWT编程相关的类都放在java.awt包及其子包下面.
+* 两种基类表示图形界面元素:
+Component和MenuComponent,其中Component代表一个能以图形化方式显示出来,并可与用户交互的对象.MenuComponent代表图形界面的菜单组件.
+* 两个重要的概念
+Container和LayoutManager,其中Container是一种特殊的Component,它代表一种容器,可以盛装普通的Component;LayoutManager则是容器管理其它组件布局的方式.
+
