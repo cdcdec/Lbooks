@@ -1,4 +1,4 @@
-﻿# 2SQL语法
+# 2SQL语法
 SQL语句是对所有关系数据库都通用的命令语句.
 ## 安装数据库
 
@@ -74,7 +74,8 @@ create table [模式名] 表名{
 
 ```
 MySql支持的列类型:
-
+* tinytext/text/mediumtext/longtext  1字节/2字节/3字节/4字节的文本对象,可用于存储超长长度的字符串,分别可存储255B/64KB/64MB/4GB大小的文本
+* 
 。。。。。
 
 #### 修改表结构的语法
@@ -86,9 +87,69 @@ alter table 表名 add{
     列名1  类型  [默认值],
     列名2  类型
 }
-
+```
+修改列定义的语法如下:
+```txt
+alter table 表名 modify{
+    #MySql的一个modify命令不支持一次修改多个列定义,Oracle支持;
+    列名1  类型  [默认值];
+}
+```
+删除列:
+```txt
+alter table 表名 drop 列名;
 
 ```
+重命名数据表(MySQL特有语法):
+```txt
+alter table 表名 rename to 新表名;
+```
+改变列名(MySQL特有语法):
+```txt
+alter table 表名 change 原表名 新表名  类型 [default expr] [first|after col_name]
+```
+#### 删除表的语法
+drop table 表名;
+
+#### truncate表
+一次性删除整个表的全部记录,但保留表结构.语法:truncate 表名;
+比delete速度快;
+
+
+### 数据库约束
+约束是在表上强制执行的数据校验规则,约束主要用于保证数据库里数据的完整性,除此之外,当表中数据存在相互依赖性时,可以保护相关的数据不被删除.大部分数据库支持下面5种完整性约束:
+* not null:非空约束,指定某列不能为空;
+* unique:唯一约束,指定某列或者几列组合不能重复;
+* primary key:主键,指定该列的值可以唯一标识该条记录;
+* foreign key:外键,指定改行记录从属于主表中的一条记录,主要用于保证参照完整性;
+* check:检查,指定一个布尔表达式,用于指定对应列的值必须满足该表达式;(MySQL不支持check约束)
+
+为数据库指定约束的时机:
+* 在建表的同时为相应的数据列指定约束;
+* 建表后创建,以修改表的方式来增加约束;
+
+>MySQL使用information_schema数据库里的TABLE_CONSTRAINTS表来保存该数据库实例中所有的约束信息。
+
+####　not null约束
+确保指定列不能为空,只能作为列级约束使用.SQL中的not null,不区分大小写.且所有数据类型的值都可以是null;
+* 建表时指定列非空约束:在列定义后增加not null;
+* 修改表时增加或删除非空约束:
+```txt
+//增加非空约束
+alter table 表名 modify 列名 类型  not null;
+//取消非空约束
+alter table 表名 modify 列名  类型 null;
+//取消非空约束,并指定默认值
+alter table 表名 modify 列名 类型 default 默认值 null;
+
+```
+#### unique约束
+
+
+create table if not exists catalog(id int primary key AUTO_INCREMENT NOT NULL,urlPath varchar(150)  not null unique,title varchar(60)  not null unique,volume varchar(10)  not null unique,mainTitle varchar(30) not null unique,secondTitle varchar(10) not null,type varchar(6) not null);
+
+CREATE TABLE IF NOT EXISTS chapter(id int primary key AUTO_INCREMENT NOT NULL,title varchar(150) not null unique,explainText mediumtext,translationText mediumtext,originalText  mediumtext,volumeNum int not null unique);
+
 
 
 
