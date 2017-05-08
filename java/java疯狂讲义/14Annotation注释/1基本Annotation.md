@@ -43,3 +43,5 @@ public class SuppressWarningsTest {
     }
 }
 ```
+## Java7的堆污染警告与@SafeVarargs
+
