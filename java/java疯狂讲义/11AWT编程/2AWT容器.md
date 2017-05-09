@@ -1,6 +1,11 @@
 ﻿# 2AWT容器
-容器(Container)是Component的子类,容器本身也是一个组件,具有组件的所有性质.
+容器(Container)是Component的子类,容器本身也是一个组件,具有组件的所有性质.component是一个具有图形表示能力的对象,可在屏幕上显示，并可与用户进行交互。典型图形用户界面中的按钮、复选框和滚动条都是组件示例.
 Component类的方法:
+* setLocation(int x, int y)/setLocation(Point p):设置组件的位置
+* setSize(int width, int height)/setSize(Dimension d):设置组件的大小;
+* setBounds(int x, int y, int width, int height)/setBounds(Rectangle r):同时设置组件的大小和位置;
+* setVisible(boolean b):设置组件的可见性;
+* setPreferredSize(Dimension preferredSize):将组件的首选大小设置为常量值;
 
 
 ## AWT提供的两种主要容器类
