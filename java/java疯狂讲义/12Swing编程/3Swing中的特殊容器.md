@@ -14,5 +14,14 @@ JSplitPane用于创建一个分割面板,它可以将一个组件(通常是一�
 
 
 ## 2使用JTabbedPane
+JTabbedPane可以很方便地在窗口上放置多个标签页,每个标签页相当于获得了一个与外部容器具有相同大小的组件摆放区域.
+JTabbedPane的构造函数:
+* JTabbedPane():创建一个具有默认的JTabbedPane.TOP选项卡布局的空TabbedPane.
+* JTabbedPane(int tabPlacement):创建一个空的TabbedPane,使其具有以下指定选项卡布局中的一种:JTabbedPane.TOP、JTabbedPane.BOTTOM、JTabbedPane.LEFT或JTabbedPane.RIGHT;
+* JTabbedPane(int tabPlacement,int tabLayoutPolicy):创建一个空的TabbedPane,使其具有指定的选项卡布局和选项卡布局策略.布局可以是以下几种之一:JTabbedPane.TOP、JTabbedPane.BOTTOM、JTabbedPane.LEFT或JTabbedPane.RIGHT.布局策略可以是以下两种之一:JTabbedPane.WRAP_TAB_LAYOUT或JTabbedPane.SCROLL_TAB_LAYOUT.
+
+JTabbedPane对象的常用方法:
+
+
 ## 3使用JLayeredPane、JDesktopPane和JInternalFrame
 
