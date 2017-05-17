@@ -23,6 +23,8 @@ Component类的方法:
 Panel代表不能独立存在,必须放在其它容器中的容器.Panel外在表现为一个矩形区域,该区域可盛装其它组件.其存在的意义是为其它组件提供空间.默认使用FlowLayout作为其布局管理器.
 
 ### ScrollPane
-ScrollPane是一个带滚动条的容器,不能独立存在,必须被添加到其它容器中,默认使用BorderLayout作为其布局管理器.
+ScrollPane是一个带滚动条的容器,不能独立存在,必须被添加到其它容器中,默认使用BorderLayout作为其布局管理器.ScrollPane通常用于盛装其它容器,通常不允许改变ScrollPane的布局管理器.
+
+
 
 
