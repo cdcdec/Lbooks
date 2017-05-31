@@ -24,4 +24,40 @@ JTabbedPane对象的常用方法:
 
 
 ## 3使用JLayeredPane、JDesktopPane和JInternalFrame
+JLayeredPane是一个代表有层次深度的容器,它允许组件在需要时互相重叠.当向JLayeredPane容器中添加组件时,需要为该组件指定一个深度索引,其中层次索引较高的层里面的组件位于其他层的组件之上.为方便起见,JLayeredPane将该深度范围分成几个不同的层.将组件放入相应的层,这样更容易确保组件正确地重叠,而不必担心为具体的深度指定编号:
+* DEFAULT_LAYER:大多数组件位于的标准层.这是最底层.
+* PALETTE_LAYER:调色板层位于默认层之上.它们对于浮动工具栏和调色板很有用,因此可以位于其他组件之上.
+* MODAL_LAYER:该层用于模式对话框.它们将出现在容器中所有工具栏、调色板或标准组件的上面.
+* POPUP_LAYER:弹出层显示在对话框的上面.这样,与组合框、工具提示和其他帮助文本关联的弹出式窗口将出现在组件、调色板或生成它们的对话框之上.
+* DRAG_LAYER:拖动一个组件时,将该组件重分配到拖动层可确保将其定位在容器中的其他所有组件之上.完成拖动后,可将该组件重分配到其正常层.
+
+可以使用JLayeredPane的方法moveToFront(Component)、moveToBack(Component)和setPosition在组件所在层中对其进行重定位.还可以使用setLayer方法更改该组件的当前层.
+
+JDesktopPane用于创建多文档界面或虚拟桌面的容器.用户可创建JInternalFrame对象并将其添加到 JDesktopPane.JDesktopPane扩展了JLayeredPane,以管理可能的重叠内部窗体.它还维护了对DesktopManager实例的引用,这是由UI类为当前的外观(L&F)所设置的.注意,JDesktopPane不支持边界.
+
+此类通常用作JInternalFrames的父类,为JInternalFrames提供一个可插入的DesktopManager对象.特定于L&F的实现installUI负责正确设置desktopManager变量.JInternalFrame的父类是JDesktopPane时,它应该将其大部分行为(关闭、调整大小等)委托给desktopManager.
+
+使用JDesktopPane和JInternalFrame创建内部窗口按如下步骤进行即可:
+* 创建一个JDesktopPane对象,该对象代表一个虚拟桌面;
+* 使用JInternalFrame创建一个内部窗口,创建窗口时可以传入一些参数用于指定JInternalFrame的标题,图标以及是否可调整、可关闭、可最大化,可图表化.
+* 将该内部窗口以合适大小、在合适位置显示出来.该窗口默认大小是0X0像素,位于0,0位置(虚拟桌面的左上角处),并且默认处于隐藏状态.
+    ```txt
+        //同时设置窗口的大小和位置
+        iframe.reshape(20,20,300,400);
+        //使该窗口可见,并尝试选中它
+        iframe.show();
+    ```
+* 将内部窗口添加到JDesktopPane容器中,再将JDesktopPane容器添加到其他容器中.
+
+
+拖动虚拟窗口的模式:JDesktopPane的setDragMode()方法设置内部窗口的拖动模式:
+* JDesktopPane.OUTLINE_DRAG_MODE:拖动过程中仅显示内部窗口的轮廓;
+* JDesktopPane.LIVE_DRAG_MODE:拖动过程中显示完整窗口,这是默认选项.系统会不断重绘虚拟桌面的内部窗口,从而引起性能下降.
+
+弹出内部对话框showInternalXxxDialog()方法:
+当使用该方法弹出内部对话框时,需要指定一个父组件,这个父组件即可以是虚拟桌面(JDesktopPane对象),也可以是内部窗口(JInternalFrame对象)
+
+
+
+
 
