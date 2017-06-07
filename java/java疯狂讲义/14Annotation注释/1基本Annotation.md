@@ -44,4 +44,15 @@ public class SuppressWarningsTest {
 }
 ```
 ## Java7的堆污染警告与@SafeVarargs
-
+当把一个不带泛型的对象赋给一个带泛型的变量时,会发生堆污染(Heap pollution),例如:
+```txt
+List list=new ArrayList<Integer>();
+/**Type safety: The expression of type List needs unchecked conversion to conform to List<String>
+编译器会发出堆污染警告
+*/
+List<String> ls=list;
+```
+"抑制"编译器的警告有三种方式:
+* 使用@SafeVarargs修饰引发该警告的方法或构造器;
+* 使用@SuppressWarnings("unchecked")修饰;
+* 编译时使用-Xlint:varargs选项
